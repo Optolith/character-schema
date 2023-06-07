@@ -1,0 +1,8 @@
+.github
+.gitignore
+.versionrc.json
+.vscode
+CODEOWNERS
+otjsmd.config.js
+src
+tsconfig.json
