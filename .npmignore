@@ -3,6 +3,7 @@
 .versionrc.json
 .vscode
 CODEOWNERS
+CONTRIBUTING.md
 otjsmd.config.js
 src
 tsconfig.json
