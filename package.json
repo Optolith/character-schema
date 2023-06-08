@@ -8,6 +8,10 @@
     "build:schema": "otjsmd",
     "watch:schema": "otjsmd -w"
   },
+  "exports": {
+    ".": "./lib/character.js",
+    "./schema": "./schema/character.schema.json"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/elyukai/optolith-character-schema.git"
