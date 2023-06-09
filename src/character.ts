@@ -323,7 +323,6 @@ export type Character = {
     include_publications: {
       /**
        * The publication identifier.
-       * @minimum 1
        * @integer
        */
       id: number
@@ -335,7 +334,6 @@ export type Character = {
     active_focus_rules: {
       /**
        * The focus rule identifier.
-       * @minimum 1
        * @integer
        */
       id: number
@@ -349,7 +347,6 @@ export type Character = {
     active_optional_rules: {
       /**
        * The focus rule identifier.
-       * @minimum 1
        * @integer
        */
       id: number
@@ -370,60 +367,7 @@ export type Character = {
     /**
      * The character's sex. It does not have to be binary, although it always must be specified how to handle it in the context of binary sex prerequisites. You can also provide a custom sex with a custom name.
       */
-    sex:
-      | { /** A binary sex option. */ type: "Male" | "Female" }
-      | {
-        /**
-         * A non-binary sex option.
-         */
-        type: "BalThani" | "Tsajana"
-
-        value: {
-          /**
-           * How the sex should be handled in the context of a binary sex prerequisite.
-           */
-          binary_handling: {
-            /**
-             * Defines if the sex should be treated as male when checking prerequisites.
-             */
-            as_male: boolean
-
-            /**
-             * Defines if the sex should be treated as female when checking prerequisites.
-             */
-            as_female: boolean
-          }
-        }
-      }
-      | {
-        /**
-         * A custom non-binary sex option.
-         */
-        type: "Custom"
-
-        value: {
-          /**
-           * The custom sex name.
-           * @minLength 1
-           */
-          name: string
-
-          /**
-           * How the sex should be handled in the context of a binary sex prerequisite.
-           */
-          binary_handling: {
-            /**
-             * Defines if the sex should be treated as male when checking prerequisites.
-             */
-            as_male: boolean
-
-            /**
-             * Defines if the sex should be treated as female when checking prerequisites.
-             */
-            as_female: boolean
-          }
-        }
-      }
+    sex: Sex
 
     /**
      * The family names and/or family members.
@@ -452,63 +396,12 @@ export type Character = {
     /**
      * The hair color of the character.
      */
-    hair_color?:
-      | {
-        /**
-         * A predefined hair color.
-         */
-        type: "Predefined"
-
-        /**
-         * The hair color identifier.
-         * @minimum 1
-         * @integer
-         */
-        id: number
-      }
-      | {
-        /**
-         * A custom hair color.
-         */
-        type: "Custom"
-
-        /**
-         * The custom hair color name.
-         * @minLength 1
-         */
-        name: string
-      }
-
+    hair_color?: Color
 
     /**
      * The eye color of the character.
      */
-    eye_color?:
-      | {
-        /**
-         * A predefined eye color.
-         */
-        type: "Predefined"
-
-        /**
-         * The eye color identifier.
-         * @minimum 1
-         * @integer
-         */
-        id: number
-      }
-      | {
-        /**
-         * A custom eye color.
-         */
-        type: "Custom"
-
-        /**
-         * The custom eye color name.
-         * @minLength 1
-         */
-        name: string
-      }
+    eye_color?: Color
 
     /**
      * The size of the character.
@@ -858,19 +751,7 @@ export type Character = {
    * @title Attributes
    * @minItems 1
    */
-  attributes: {
-    /**
-     * The attribute identifier.
-     */
-    id: number
-
-    /**
-     * The attribute's value.
-     * @minimum 9
-     * @integer
-     */
-    value: number
-  }[]
+  attributes: Attribute[]
 
   /**
    * Computed, set and bought values for/of derived characteristics.
@@ -880,289 +761,57 @@ export type Character = {
     /**
      * @title Life Points
      */
-    life_points: {
-      /**
-       * The life points base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The life points modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The number of life points purchased.
-       * @minimum 0
-       * @integer
-       */
-      purchased: number
-
-      /**
-       * The number of life points permanently lost.
-       * @integer
-       * @minimum 0
-       */
-      permanently_lost: number
-
-      /**
-       * The (final) life points maximum.
-       * @integer
-       */
-      readonly maximum: number
-    }
+    life_points: Energy
 
     /**
      * This property does not exist if the character does not have the active advantage Spellcaster and an active magical tradition special ability.
      * @title Arcane Energy
      */
-    arcane_energy?: {
-      /**
-       * The arcane energy base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The arcane energy modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The number of arcane energy points purchased.
-       * @minimum 0
-       * @integer
-       */
-      purchased: number
-
-      /**
-       * The number of arcane energy points permanently lost.
-       * @integer
-       * @minimum 0
-       */
-      permanently_lost: number
-
-      /**
-       * The number of permanently lost arcane energy points that have been bought back.
-       * @integer
-       * @minimum 0
-       */
-      permanently_lost_bought_back: number
-
-      /**
-       * The (final) arcane energy maximum.
-       * @integer
-       */
-      readonly maximum: number
-    }
+    arcane_energy?: EnergyWithBuyBack
 
     /**
      * This property does not exist if the character does not have the active advantage Blessed One and an active blessed tradition special ability.
      * @title Karma Points
      */
-    karma_points?: {
-      /**
-       * The karma points base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The karma points modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The number of karma points purchased.
-       * @minimum 0
-       * @integer
-       */
-      purchased: number
-
-      /**
-       * The number of karma points permanently lost.
-       * @integer
-       * @minimum 0
-       */
-      permanently_lost: number
-
-      /**
-       * The number of permanently lost karma points that have been bought back.
-       * @integer
-       * @minimum 0
-       */
-      permanently_lost_bought_back: number
-
-      /**
-       * The (final) karma points maximum.
-       * @integer
-       */
-      readonly maximum: number
-    }
+    karma_points?: EnergyWithBuyBack
 
     /**
      * @title Spirit
      */
-    spirit: {
-      /**
-       * The spirit base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The spirit modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The (final) spirit value.
-       * @integer
-       */
-      readonly value: number
-    }
+    spirit: DerivedCharacteristic
 
     /**
      * @title Toughness
      */
-    toughness: {
-      /**
-       * The toughness base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The toughness modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The (final) toughness value.
-       * @integer
-       */
-      readonly value: number
-    }
+    toughness: DerivedCharacteristic
 
     /**
      * @title Dodge
      */
-    dodge: {
-      /**
-       * The dodge base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The dodge modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The (final) dodge value.
-       * @integer
-       */
-      readonly value: number
-    }
+    dodge: DerivedCharacteristic
 
     /**
      * @title Initiative
      */
-    initiative: {
-      /**
-       * The initiative base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The initiative modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The (final) initiative value.
-       * @integer
-       */
-      readonly value: number
-    }
+    initiative: DerivedCharacteristic
 
     /**
      * @title Movement
      */
-    movement: {
-      /**
-       * The movement base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The movement modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The (final) movement value.
-       * @integer
-       */
-      readonly value: number
-    }
+    movement: DerivedCharacteristic
 
     /**
      * This property is not present if the required focus rules are not activated.
      * @title Wound Threshold
      */
-    wound_threshold: {
-      /**
-       * The wound threshold base value.
-       * @integer
-       */
-      readonly base: number
-
-      /**
-       * The wound threshold modifier depending on relevant advantages, disadvantages and special abilities.
-       * @integer
-       */
-      readonly modifier: number
-
-      /**
-       * The (final) wound threshold value.
-       * @integer
-       */
-      readonly value: number
-    }
+    wound_threshold: DerivedCharacteristic
   }
 
   /**
    * A list of skills with values above 0. Skills that are not listed here default to 0.
    * @title Skills
    */
-  skills: {
-    /**
-     * The skill identifier.
-     * @minimum 1
-     * @integer
-     */
-    id: number
-
-    /**
-     * The skill rating.
-     * @minimum 1
-     * @integer
-     */
-    value: number
-  }[]
+  skills: Skill[]
 
   /**
    * Lists of combat techniques, by group.
@@ -1173,41 +822,13 @@ export type Character = {
      * A list of melee combat techniques with values above 6. Combat techniques that are not listed here default to 6.
      * @title Melee Combat Techniques
      */
-    melee: {
-      /**
-       * The melee combat technique identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The combat technique rating.
-       * @minimum 7
-       * @integer
-       */
-      value: number
-    }[]
+    melee: CombatTechnique[]
 
     /**
      * A list of ranged combat techniques with values above 6. Combat techniques that are not listed here default to 6.
      * @title Ranged Combat Techniques
      */
-    ranged: {
-      /**
-       * The ranged combat technique identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The combat technique rating.
-       * @minimum 7
-       * @integer
-       */
-      value: number
-    }[]
+    ranged: CombatTechnique[]
   }
 
   /**
@@ -1215,70 +836,21 @@ export type Character = {
    * @title Cantrips
    * @minItems 1
    */
-  cantrips?: {
-    /**
-     * The cantrip identifier.
-     * @minimum 1
-     * @integer
-     */
-    id: number
-  }[]
+  cantrips?: TinyActivatable[]
 
   /**
    * A list of active spells.
    * @title Spells
    * @minItems 1
    */
-  spells?: {
-    /**
-     * The spell identifier.
-     * @minimum 1
-     * @integer
-     */
-    id: number
-
-    /**
-     * The skill rating.
-     * @minimum 0
-     * @integer
-     */
-    value: number
-
-    /**
-     * Purchased spell enhancements.
-     * @minItems 1
-     * @uniqueItems true
-     */
-    enhancements?: (/** @integer @minimum 1 */number)[]
-  }[]
+  spells?: ActivatableRatedWithEnhancements[]
 
   /**
    * A list of active rituals.
    * @title Rituals
    * @minItems 1
    */
-  rituals?: {
-    /**
-     * The ritual identifier.
-     * @minimum 1
-     * @integer
-     */
-    id: number
-
-    /**
-     * The skill rating.
-     * @minimum 0
-     * @integer
-     */
-    value: number
-
-    /**
-     * Purchased ritual enhancements.
-     * @minItems 1
-     * @uniqueItems true
-     */
-    enhancements?: (/** @integer @minimum 1 */number)[]
-  }[]
+  rituals?: ActivatableRatedWithEnhancements[]
 
   /**
    * Lists of magical actions, by group.
@@ -1291,189 +863,63 @@ export type Character = {
      * @title Curses
      * @minItems 1
      */
-    curses?: {
-      /**
-       * The curse identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    curses?: ActivatableRated[]
 
     /**
      * A list of active Elven magical songs.
      * @title Elven Magical Songs
      * @minItems 1
      */
-    elven_magical_songs?: {
-      /**
-       * The Elven magical song identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    elven_magical_songs?: ActivatableRated[]
 
     /**
      * A list of active domination rituals.
      * @title Domination Rituals
      * @minItems 1
      */
-    domination_rituals?: {
-      /**
-       * The domination ritual identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    domination_rituals?: ActivatableRated[]
 
     /**
      * A list of active magical dances.
      * @title Magical Dances
      * @minItems 1
      */
-    magical_dances?: {
-      /**
-       * The magical dance identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    magical_dances?: ActivatableRated[]
 
     /**
      * A list of active magical melodies.
      * @title Magical Melodies
      * @minItems 1
      */
-    magical_melodies?: {
-      /**
-       * The magical melody identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    magical_melodies?: ActivatableRated[]
 
     /**
      * A list of active jester tricks.
      * @title Jester Tricks
      * @minItems 1
      */
-    jester_tricks?: {
-      /**
-       * The jester trick identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    jester_tricks?: ActivatableRated[]
 
     /**
      * A list of active animist powers.
      * @title Animist Powers
      * @minItems 1
      */
-    animist_powers?: {
-      /**
-       * The animist power identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    animist_powers?: ActivatableRated[]
 
     /**
      * A list of active geode rituals.
      * @title Geode Rituals
      * @minItems 1
      */
-    geode_rituals?: {
-      /**
-       * The geode ritual identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    geode_rituals?: ActivatableRated[]
 
     /**
      * A list of active zibilja rituals.
      * @title Zibilja Rituals
      * @minItems 1
      */
-    zibilja_rituals?: {
-      /**
-       * The zibilja ritual identifier.
-       * @minimum 1
-       * @integer
-       */
-      id: number
-
-      /**
-       * The skill rating.
-       * @minimum 0
-       * @integer
-       */
-      value: number
-    }[]
+    zibilja_rituals?: ActivatableRated[]
   }
 
   /**
@@ -1481,70 +927,21 @@ export type Character = {
    * @title Blessings
    * @minItems 1
    */
-  blessings?: {
-    /**
-     * The blessing identifier.
-     * @minimum 1
-     * @integer
-     */
-    id: number
-  }[]
+  blessings?: TinyActivatable[]
 
   /**
    * A list of active liturgical chants.
    * @title Liturgical Chants
    * @minItems 1
    */
-  liturgical_chants?: {
-    /**
-     * The liturgical chant identifier.
-     * @minimum 1
-     * @integer
-     */
-    id: number
-
-    /**
-     * The skill rating.
-     * @minimum 0
-     * @integer
-     */
-    value: number
-
-    /**
-     * Purchased liturgical enhancements.
-     * @minItems 1
-     * @uniqueItems true
-     */
-    enhancements?: (/** @integer @minimum 1 */number)[]
-  }[]
+  liturgical_chants?: ActivatableRatedWithEnhancements[]
 
   /**
    * A list of active ceremonies.
    * @title Ceremonies
    * @minItems 1
    */
-  ceremonies?: {
-    /**
-     * The ceremony identifier.
-     * @minimum 1
-     * @integer
-     */
-    id: number
-
-    /**
-     * The skill rating.
-     * @minimum 0
-     * @integer
-     */
-    value: number
-
-    /**
-     * Purchased liturgical enhancements.
-     * @minItems 1
-     * @uniqueItems true
-     */
-    enhancements?: (/** @integer @minimum 1 */number)[]
-  }[]
+  ceremonies?: ActivatableRatedWithEnhancements[]
 
   items: {}
 
@@ -1552,41 +949,318 @@ export type Character = {
 
   /**
    * The money the character owns.
-   * @title Purse
    */
-  purse: {
-    /**
-     * The number of kreutzers the character owns.
-     * @minimum 0
-     * @integer
-     */
-    kreutzers: number
-
-    /**
-     * The number of halers the character owns.
-     * @minimum 0
-     * @integer
-     */
-    halers: number
-
-    /**
-     * The number of silverthalers the character owns.
-     * @minimum 0
-     * @integer
-     */
-    silverthalers: number
-
-    /**
-     * The number of ducats the character owns.
-     * @minimum 0
-     * @integer
-     */
-    ducats: number
-  }
+  purse: Purse
 
   creatures?: {}
 
   pact?: {}
+}
+
+export type Sex =
+  | BinarySex
+  | NonBinarySex
+  | CustomSex
+
+/**
+ * A binary sex option.
+ */
+export type BinarySex = {
+  type: "Male" | "Female"
+}
+
+/**
+ * A non-binary sex option.
+ */
+export type NonBinarySex ={
+  type: "BalThani" | "Tsajana"
+
+  /**
+   * Defines how a non-binary sex should be treated when checking prerequisites.
+   */
+  binary_handling: BinaryHandling
+}
+
+/**
+ * A custom non-binary sex option.
+ */
+export type CustomSex = {
+  type: "Custom"
+
+  /**
+   * The custom sex name.
+   * @minLength 1
+   */
+  name: string
+
+  /**
+   * Defines how a non-binary sex should be treated when checking prerequisites.
+   */
+  binary_handling: BinaryHandling
+}
+
+/**
+ * Defines how a non-binary sex should be treated when checking prerequisites.
+ */
+export type BinaryHandling = {
+  /**
+   * Defines if the sex should be treated as male when checking prerequisites.
+   */
+  as_male: boolean
+
+  /**
+   * Defines if the sex should be treated as female when checking prerequisites.
+   */
+  as_female: boolean
+}
+
+export type Color =
+  | PredefinedColor
+  | CustomColor
+
+/**
+ * A predefined color.
+ */
+export type PredefinedColor = {
+  type: "Predefined"
+
+  /**
+   * The color identifier.
+   * @integer
+   */
+  id: number
+}
+
+/**
+ * A custom color.
+ */
+export type CustomColor = {
+  type: "Custom"
+
+  /**
+   * The custom color name.
+   * @minLength 1
+   */
+  name: string
+}
+
+export type DerivedCharacteristic = {
+  /**
+   * The base value.
+   * @integer
+   */
+  readonly base: number
+
+  /**
+   * The modifier depending on relevant advantages, disadvantages and special abilities.
+   * @integer
+   */
+  readonly modifier: number
+
+  /**
+   * The (final) value.
+   * @integer
+   */
+  readonly value: number
+}
+
+export type Energy = {
+  /**
+   * The base value.
+   * @integer
+   */
+  readonly base: number
+
+  /**
+   * The modifier depending on relevant advantages, disadvantages and special abilities.
+   * @integer
+   */
+  readonly modifier: number
+
+  /**
+   * The number of points purchased.
+   * @minimum 0
+   * @integer
+   */
+  purchased: number
+
+  /**
+   * The number of points permanently lost.
+   * @integer
+   * @minimum 0
+   */
+  permanently_lost: number
+
+  /**
+   * The (final) maximum.
+   * @integer
+   */
+  readonly maximum: number
+}
+
+export type EnergyWithBuyBack = {
+  /**
+   * The base value.
+   * @integer
+   */
+  readonly base: number
+
+  /**
+   * The modifier depending on relevant advantages, disadvantages and special abilities.
+   * @integer
+   */
+  readonly modifier: number
+
+  /**
+   * The number of points purchased.
+   * @minimum 0
+   * @integer
+   */
+  purchased: number
+
+  /**
+   * The number of points permanently lost.
+   * @integer
+   * @minimum 0
+   */
+  permanently_lost: number
+
+  /**
+   * The number of permanently lost points that have been bought back.
+   * @integer
+   * @minimum 0
+   */
+  permanently_lost_bought_back: number
+
+  /**
+   * The (final) maximum.
+   * @integer
+   */
+  readonly maximum: number
+}
+
+export type Attribute = {
+  /**
+   * The attribute identifier.
+   * @integer
+   */
+  id: number
+
+  /**
+   * The attribute value.
+   * @minimum 9
+   * @integer
+   */
+  value: number
+}
+
+export type Skill = {
+  /**
+   * The skill identifier.
+   * @integer
+   */
+  id: number
+
+  /**
+   * The skill rating.
+   * @minimum 1
+   * @integer
+   */
+  value: number
+}
+
+export type CombatTechnique = {
+  /**
+   * The combat technique identifier.
+   * @integer
+   */
+  id: number
+
+  /**
+   * The combat technique rating.
+   * @minimum 7
+   * @integer
+   */
+  value: number
+}
+
+export type ActivatableRated = {
+  /**
+   * The skill identifier.
+   * @integer
+   */
+  id: number
+
+  /**
+   * The skill rating.
+   * @minimum 0
+   * @integer
+   */
+  value: number
+}
+
+export type ActivatableRatedWithEnhancements = {
+  /**
+   * The skill identifier.
+   * @integer
+   */
+  id: number
+
+  /**
+   * The skill rating.
+   * @minimum 0
+   * @integer
+   */
+  value: number
+
+  /**
+   * Purchased enhancements.
+   * @minItems 1
+   * @uniqueItems true
+   */
+  enhancements?: (/** @integer @minimum 1 */number)[]
+}
+
+export type TinyActivatable = {
+  /**
+   * The identifier.
+   * @integer
+   */
+  id: number
+}
+
+/**
+ * The money the character owns.
+ * @title Purse
+ */
+export type Purse = {
+  /**
+   * The number of kreutzers the character owns.
+   * @minimum 0
+   * @integer
+   */
+  kreutzers: number
+
+  /**
+   * The number of halers the character owns.
+   * @minimum 0
+   * @integer
+   */
+  halers: number
+
+  /**
+   * The number of silverthalers the character owns.
+   * @minimum 0
+   * @integer
+   */
+  silverthalers: number
+
+  /**
+   * The number of ducats the character owns.
+   * @minimum 0
+   * @integer
+   */
+  ducats: number
 }
 
 /**
@@ -1596,7 +1270,6 @@ export type Character = {
 export type Activatables = {
   /**
    * The activatable identifier.
-   * @minimum 1
    * @integer
    */
   id: number
@@ -1649,7 +1322,6 @@ export type Activatables = {
 
           /**
            * The numeric identifier.
-           * @minimum 1
            * @integer
            */
           value: number

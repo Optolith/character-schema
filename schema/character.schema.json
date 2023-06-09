@@ -330,8 +330,7 @@
                 "properties": {
                   "id": {
                     "description": "The publication identifier.",
-                    "type": "integer",
-                    "minimum": 1
+                    "type": "integer"
                   }
                 },
                 "required": [
@@ -348,8 +347,7 @@
                 "properties": {
                   "id": {
                     "description": "The focus rule identifier.",
-                    "type": "integer",
-                    "minimum": 1
+                    "type": "integer"
                   }
                 },
                 "required": [
@@ -366,8 +364,7 @@
                 "properties": {
                   "id": {
                     "description": "The focus rule identifier.",
-                    "type": "integer",
-                    "minimum": 1
+                    "type": "integer"
                   },
                   "options": {
                     "description": "An array of one or more options. The exact meaning of each option varies based on the optional rule.",
@@ -400,124 +397,7 @@
           "properties": {
             "sex": {
               "description": "The character's sex. It does not have to be binary, although it always must be specified how to handle it in the context of binary sex prerequisites. You can also provide a custom sex with a custom name.",
-              "oneOf": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "oneOf": [
-                        {
-                          "const": "Male"
-                        },
-                        {
-                          "const": "Female"
-                        }
-                      ]
-                    }
-                  },
-                  "required": [
-                    "type"
-                  ],
-                  "additionalProperties": false
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "description": "A non-binary sex option.",
-                      "oneOf": [
-                        {
-                          "const": "BalThani"
-                        },
-                        {
-                          "const": "Tsajana"
-                        }
-                      ]
-                    },
-                    "value": {
-                      "type": "object",
-                      "properties": {
-                        "binary_handling": {
-                          "description": "How the sex should be handled in the context of a binary sex prerequisite.",
-                          "type": "object",
-                          "properties": {
-                            "as_male": {
-                              "description": "Defines if the sex should be treated as male when checking prerequisites.",
-                              "type": "boolean"
-                            },
-                            "as_female": {
-                              "description": "Defines if the sex should be treated as female when checking prerequisites.",
-                              "type": "boolean"
-                            }
-                          },
-                          "required": [
-                            "as_male",
-                            "as_female"
-                          ],
-                          "additionalProperties": false
-                        }
-                      },
-                      "required": [
-                        "binary_handling"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "value"
-                  ],
-                  "additionalProperties": false
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "description": "A custom non-binary sex option.",
-                      "const": "Custom"
-                    },
-                    "value": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "description": "The custom sex name.",
-                          "type": "string",
-                          "minLength": 1
-                        },
-                        "binary_handling": {
-                          "description": "How the sex should be handled in the context of a binary sex prerequisite.",
-                          "type": "object",
-                          "properties": {
-                            "as_male": {
-                              "description": "Defines if the sex should be treated as male when checking prerequisites.",
-                              "type": "boolean"
-                            },
-                            "as_female": {
-                              "description": "Defines if the sex should be treated as female when checking prerequisites.",
-                              "type": "boolean"
-                            }
-                          },
-                          "required": [
-                            "as_male",
-                            "as_female"
-                          ],
-                          "additionalProperties": false
-                        }
-                      },
-                      "required": [
-                        "name",
-                        "binary_handling"
-                      ],
-                      "additionalProperties": false
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "value"
-                  ],
-                  "additionalProperties": false
-                }
-              ]
+              "$ref": "#/definitions/Sex"
             },
             "family": {
               "description": "The family names and/or family members.",
@@ -541,89 +421,11 @@
             },
             "hair_color": {
               "description": "The hair color of the character.",
-              "oneOf": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "description": "A predefined hair color.",
-                      "const": "Predefined"
-                    },
-                    "id": {
-                      "description": "The hair color identifier.",
-                      "type": "integer",
-                      "minimum": 1
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "id"
-                  ],
-                  "additionalProperties": false
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "description": "A custom hair color.",
-                      "const": "Custom"
-                    },
-                    "name": {
-                      "description": "The custom hair color name.",
-                      "type": "string",
-                      "minLength": 1
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "name"
-                  ],
-                  "additionalProperties": false
-                }
-              ]
+              "$ref": "#/definitions/Color"
             },
             "eye_color": {
               "description": "The eye color of the character.",
-              "oneOf": [
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "description": "A predefined eye color.",
-                      "const": "Predefined"
-                    },
-                    "id": {
-                      "description": "The eye color identifier.",
-                      "type": "integer",
-                      "minimum": 1
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "id"
-                  ],
-                  "additionalProperties": false
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "description": "A custom eye color.",
-                      "const": "Custom"
-                    },
-                    "name": {
-                      "description": "The custom eye color name.",
-                      "type": "string",
-                      "minLength": 1
-                    }
-                  },
-                  "required": [
-                    "type",
-                    "name"
-                  ],
-                  "additionalProperties": false
-                }
-              ]
+              "$ref": "#/definitions/Color"
             },
             "size": {
               "description": "The size of the character.",
@@ -876,23 +678,7 @@
           "description": "A list of attributes with values above 8. Attributes that are not listed here default to 8.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "The attribute identifier.",
-                "type": "number"
-              },
-              "value": {
-                "description": "The attribute's value.",
-                "type": "integer",
-                "minimum": 9
-              }
-            },
-            "required": [
-              "id",
-              "value"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/Attribute"
           },
           "minItems": 1
         },
@@ -903,297 +689,42 @@
           "properties": {
             "life_points": {
               "title": "Life Points",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The life points base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The life points modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "purchased": {
-                  "description": "The number of life points purchased.",
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "permanently_lost": {
-                  "description": "The number of life points permanently lost.",
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "maximum": {
-                  "description": "The (final) life points maximum.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "purchased",
-                "permanently_lost",
-                "maximum"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/Energy"
             },
             "arcane_energy": {
               "title": "Arcane Energy",
               "description": "This property does not exist if the character does not have the active advantage Spellcaster and an active magical tradition special ability.",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The arcane energy base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The arcane energy modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "purchased": {
-                  "description": "The number of arcane energy points purchased.",
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "permanently_lost": {
-                  "description": "The number of arcane energy points permanently lost.",
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "permanently_lost_bought_back": {
-                  "description": "The number of permanently lost arcane energy points that have been bought back.",
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "maximum": {
-                  "description": "The (final) arcane energy maximum.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "purchased",
-                "permanently_lost",
-                "permanently_lost_bought_back",
-                "maximum"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/EnergyWithBuyBack"
             },
             "karma_points": {
               "title": "Karma Points",
               "description": "This property does not exist if the character does not have the active advantage Blessed One and an active blessed tradition special ability.",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The karma points base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The karma points modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "purchased": {
-                  "description": "The number of karma points purchased.",
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "permanently_lost": {
-                  "description": "The number of karma points permanently lost.",
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "permanently_lost_bought_back": {
-                  "description": "The number of permanently lost karma points that have been bought back.",
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "maximum": {
-                  "description": "The (final) karma points maximum.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "purchased",
-                "permanently_lost",
-                "permanently_lost_bought_back",
-                "maximum"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/EnergyWithBuyBack"
             },
             "spirit": {
               "title": "Spirit",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The spirit base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The spirit modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "value": {
-                  "description": "The (final) spirit value.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "value"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/DerivedCharacteristic"
             },
             "toughness": {
               "title": "Toughness",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The toughness base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The toughness modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "value": {
-                  "description": "The (final) toughness value.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "value"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/DerivedCharacteristic"
             },
             "dodge": {
               "title": "Dodge",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The dodge base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The dodge modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "value": {
-                  "description": "The (final) dodge value.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "value"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/DerivedCharacteristic"
             },
             "initiative": {
               "title": "Initiative",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The initiative base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The initiative modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "value": {
-                  "description": "The (final) initiative value.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "value"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/DerivedCharacteristic"
             },
             "movement": {
               "title": "Movement",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The movement base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The movement modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "value": {
-                  "description": "The (final) movement value.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "value"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/DerivedCharacteristic"
             },
             "wound_threshold": {
               "title": "Wound Threshold",
               "description": "This property is not present if the required focus rules are not activated.",
-              "type": "object",
-              "properties": {
-                "base": {
-                  "description": "The wound threshold base value.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "modifier": {
-                  "description": "The wound threshold modifier depending on relevant advantages, disadvantages and special abilities.",
-                  "type": "integer",
-                  "readOnly": false
-                },
-                "value": {
-                  "description": "The (final) wound threshold value.",
-                  "type": "integer",
-                  "readOnly": false
-                }
-              },
-              "required": [
-                "base",
-                "modifier",
-                "value"
-              ],
-              "additionalProperties": false
+              "$ref": "#/definitions/DerivedCharacteristic"
             }
           },
           "required": [
@@ -1212,24 +743,7 @@
           "description": "A list of skills with values above 0. Skills that are not listed here default to 0.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "The skill identifier.",
-                "type": "integer",
-                "minimum": 1
-              },
-              "value": {
-                "description": "The skill rating.",
-                "type": "integer",
-                "minimum": 1
-              }
-            },
-            "required": [
-              "id",
-              "value"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/Skill"
           }
         },
         "combat_techniques": {
@@ -1242,24 +756,7 @@
               "description": "A list of melee combat techniques with values above 6. Combat techniques that are not listed here default to 6.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The melee combat technique identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The combat technique rating.",
-                    "type": "integer",
-                    "minimum": 7
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/CombatTechnique"
               }
             },
             "ranged": {
@@ -1267,24 +764,7 @@
               "description": "A list of ranged combat techniques with values above 6. Combat techniques that are not listed here default to 6.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The ranged combat technique identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The combat technique rating.",
-                    "type": "integer",
-                    "minimum": 7
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/CombatTechnique"
               }
             }
           },
@@ -1299,18 +779,7 @@
           "description": "A list of purchased cantrips.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "The cantrip identifier.",
-                "type": "integer",
-                "minimum": 1
-              }
-            },
-            "required": [
-              "id"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/TinyActivatable"
           },
           "minItems": 1
         },
@@ -1319,33 +788,7 @@
           "description": "A list of active spells.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "The spell identifier.",
-                "type": "integer",
-                "minimum": 1
-              },
-              "value": {
-                "description": "The skill rating.",
-                "type": "integer",
-                "minimum": 0
-              },
-              "enhancements": {
-                "description": "Purchased spell enhancements.",
-                "type": "array",
-                "items": {
-                  "type": "number"
-                },
-                "minItems": 1,
-                "uniqueItems": true
-              }
-            },
-            "required": [
-              "id",
-              "value"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/ActivatableRatedWithEnhancements"
           },
           "minItems": 1
         },
@@ -1354,33 +797,7 @@
           "description": "A list of active rituals.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "The ritual identifier.",
-                "type": "integer",
-                "minimum": 1
-              },
-              "value": {
-                "description": "The skill rating.",
-                "type": "integer",
-                "minimum": 0
-              },
-              "enhancements": {
-                "description": "Purchased ritual enhancements.",
-                "type": "array",
-                "items": {
-                  "type": "number"
-                },
-                "minItems": 1,
-                "uniqueItems": true
-              }
-            },
-            "required": [
-              "id",
-              "value"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/ActivatableRatedWithEnhancements"
           },
           "minItems": 1
         },
@@ -1394,24 +811,7 @@
               "description": "A list of active curses.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The curse identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             },
@@ -1420,24 +820,7 @@
               "description": "A list of active Elven magical songs.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The Elven magical song identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             },
@@ -1446,24 +829,7 @@
               "description": "A list of active domination rituals.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The domination ritual identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             },
@@ -1472,24 +838,7 @@
               "description": "A list of active magical dances.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The magical dance identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             },
@@ -1498,24 +847,7 @@
               "description": "A list of active magical melodies.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The magical melody identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             },
@@ -1524,24 +856,7 @@
               "description": "A list of active jester tricks.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The jester trick identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             },
@@ -1550,24 +865,7 @@
               "description": "A list of active animist powers.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The animist power identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             },
@@ -1576,24 +874,7 @@
               "description": "A list of active geode rituals.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The geode ritual identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             },
@@ -1602,24 +883,7 @@
               "description": "A list of active zibilja rituals.",
               "type": "array",
               "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "description": "The zibilja ritual identifier.",
-                    "type": "integer",
-                    "minimum": 1
-                  },
-                  "value": {
-                    "description": "The skill rating.",
-                    "type": "integer",
-                    "minimum": 0
-                  }
-                },
-                "required": [
-                  "id",
-                  "value"
-                ],
-                "additionalProperties": false
+                "$ref": "#/definitions/ActivatableRated"
               },
               "minItems": 1
             }
@@ -1633,18 +897,7 @@
           "description": "A list of purchased blessings.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "The blessing identifier.",
-                "type": "integer",
-                "minimum": 1
-              }
-            },
-            "required": [
-              "id"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/TinyActivatable"
           },
           "minItems": 1
         },
@@ -1653,33 +906,7 @@
           "description": "A list of active liturgical chants.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "The liturgical chant identifier.",
-                "type": "integer",
-                "minimum": 1
-              },
-              "value": {
-                "description": "The skill rating.",
-                "type": "integer",
-                "minimum": 0
-              },
-              "enhancements": {
-                "description": "Purchased liturgical enhancements.",
-                "type": "array",
-                "items": {
-                  "type": "number"
-                },
-                "minItems": 1,
-                "uniqueItems": true
-              }
-            },
-            "required": [
-              "id",
-              "value"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/ActivatableRatedWithEnhancements"
           },
           "minItems": 1
         },
@@ -1688,33 +915,7 @@
           "description": "A list of active ceremonies.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "The ceremony identifier.",
-                "type": "integer",
-                "minimum": 1
-              },
-              "value": {
-                "description": "The skill rating.",
-                "type": "integer",
-                "minimum": 0
-              },
-              "enhancements": {
-                "description": "Purchased liturgical enhancements.",
-                "type": "array",
-                "items": {
-                  "type": "number"
-                },
-                "minItems": 1,
-                "uniqueItems": true
-              }
-            },
-            "required": [
-              "id",
-              "value"
-            ],
-            "additionalProperties": false
+            "$ref": "#/definitions/ActivatableRatedWithEnhancements"
           },
           "minItems": 1
         },
@@ -1731,38 +932,8 @@
           "additionalProperties": false
         },
         "purse": {
-          "title": "Purse",
           "description": "The money the character owns.",
-          "type": "object",
-          "properties": {
-            "kreutzers": {
-              "description": "The number of kreutzers the character owns.",
-              "type": "integer",
-              "minimum": 0
-            },
-            "halers": {
-              "description": "The number of halers the character owns.",
-              "type": "integer",
-              "minimum": 0
-            },
-            "silverthalers": {
-              "description": "The number of silverthalers the character owns.",
-              "type": "integer",
-              "minimum": 0
-            },
-            "ducats": {
-              "description": "The number of ducats the character owns.",
-              "type": "integer",
-              "minimum": 0
-            }
-          },
-          "required": [
-            "kreutzers",
-            "halers",
-            "silverthalers",
-            "ducats"
-          ],
-          "additionalProperties": false
+          "$ref": "#/definitions/Purse"
         },
         "creatures": {
           "type": "object",
@@ -1803,6 +974,413 @@
       ],
       "additionalProperties": false
     },
+    "Sex": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/BinarySex"
+        },
+        {
+          "$ref": "#/definitions/NonBinarySex"
+        },
+        {
+          "$ref": "#/definitions/CustomSex"
+        }
+      ]
+    },
+    "BinarySex": {
+      "description": "A binary sex option.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "const": "Male"
+            },
+            {
+              "const": "Female"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "NonBinarySex": {
+      "description": "A non-binary sex option.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "oneOf": [
+            {
+              "const": "BalThani"
+            },
+            {
+              "const": "Tsajana"
+            }
+          ]
+        },
+        "binary_handling": {
+          "description": "Defines how a non-binary sex should be treated when checking prerequisites.",
+          "$ref": "#/definitions/BinaryHandling"
+        }
+      },
+      "required": [
+        "type",
+        "binary_handling"
+      ],
+      "additionalProperties": false
+    },
+    "CustomSex": {
+      "description": "A custom non-binary sex option.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Custom"
+        },
+        "name": {
+          "description": "The custom sex name.",
+          "type": "string",
+          "minLength": 1
+        },
+        "binary_handling": {
+          "description": "Defines how a non-binary sex should be treated when checking prerequisites.",
+          "$ref": "#/definitions/BinaryHandling"
+        }
+      },
+      "required": [
+        "type",
+        "name",
+        "binary_handling"
+      ],
+      "additionalProperties": false
+    },
+    "BinaryHandling": {
+      "description": "Defines how a non-binary sex should be treated when checking prerequisites.",
+      "type": "object",
+      "properties": {
+        "as_male": {
+          "description": "Defines if the sex should be treated as male when checking prerequisites.",
+          "type": "boolean"
+        },
+        "as_female": {
+          "description": "Defines if the sex should be treated as female when checking prerequisites.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "as_male",
+        "as_female"
+      ],
+      "additionalProperties": false
+    },
+    "Color": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/PredefinedColor"
+        },
+        {
+          "$ref": "#/definitions/CustomColor"
+        }
+      ]
+    },
+    "PredefinedColor": {
+      "description": "A predefined color.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Predefined"
+        },
+        "id": {
+          "description": "The color identifier.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "CustomColor": {
+      "description": "A custom color.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Custom"
+        },
+        "name": {
+          "description": "The custom color name.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "type",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "DerivedCharacteristic": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The base value.",
+          "type": "integer",
+          "readOnly": false
+        },
+        "modifier": {
+          "description": "The modifier depending on relevant advantages, disadvantages and special abilities.",
+          "type": "integer",
+          "readOnly": false
+        },
+        "value": {
+          "description": "The (final) value.",
+          "type": "integer",
+          "readOnly": false
+        }
+      },
+      "required": [
+        "base",
+        "modifier",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "Energy": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The base value.",
+          "type": "integer",
+          "readOnly": false
+        },
+        "modifier": {
+          "description": "The modifier depending on relevant advantages, disadvantages and special abilities.",
+          "type": "integer",
+          "readOnly": false
+        },
+        "purchased": {
+          "description": "The number of points purchased.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "permanently_lost": {
+          "description": "The number of points permanently lost.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum": {
+          "description": "The (final) maximum.",
+          "type": "integer",
+          "readOnly": false
+        }
+      },
+      "required": [
+        "base",
+        "modifier",
+        "purchased",
+        "permanently_lost",
+        "maximum"
+      ],
+      "additionalProperties": false
+    },
+    "EnergyWithBuyBack": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The base value.",
+          "type": "integer",
+          "readOnly": false
+        },
+        "modifier": {
+          "description": "The modifier depending on relevant advantages, disadvantages and special abilities.",
+          "type": "integer",
+          "readOnly": false
+        },
+        "purchased": {
+          "description": "The number of points purchased.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "permanently_lost": {
+          "description": "The number of points permanently lost.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "permanently_lost_bought_back": {
+          "description": "The number of permanently lost points that have been bought back.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum": {
+          "description": "The (final) maximum.",
+          "type": "integer",
+          "readOnly": false
+        }
+      },
+      "required": [
+        "base",
+        "modifier",
+        "purchased",
+        "permanently_lost",
+        "permanently_lost_bought_back",
+        "maximum"
+      ],
+      "additionalProperties": false
+    },
+    "Attribute": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The attribute identifier.",
+          "type": "integer"
+        },
+        "value": {
+          "description": "The attribute value.",
+          "type": "integer",
+          "minimum": 9
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "Skill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The skill identifier.",
+          "type": "integer"
+        },
+        "value": {
+          "description": "The skill rating.",
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "CombatTechnique": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The combat technique identifier.",
+          "type": "integer"
+        },
+        "value": {
+          "description": "The combat technique rating.",
+          "type": "integer",
+          "minimum": 7
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "ActivatableRated": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The skill identifier.",
+          "type": "integer"
+        },
+        "value": {
+          "description": "The skill rating.",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "ActivatableRatedWithEnhancements": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The skill identifier.",
+          "type": "integer"
+        },
+        "value": {
+          "description": "The skill rating.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "enhancements": {
+          "description": "Purchased enhancements.",
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "TinyActivatable": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The identifier.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Purse": {
+      "title": "Purse",
+      "description": "The money the character owns.",
+      "type": "object",
+      "properties": {
+        "kreutzers": {
+          "description": "The number of kreutzers the character owns.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "halers": {
+          "description": "The number of halers the character owns.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "silverthalers": {
+          "description": "The number of silverthalers the character owns.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "ducats": {
+          "description": "The number of ducats the character owns.",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "kreutzers",
+        "halers",
+        "silverthalers",
+        "ducats"
+      ],
+      "additionalProperties": false
+    },
     "Activatables": {
       "title": "Activatables",
       "description": "A list of active activatables. Activatables are advantages, disadvantages and special abilities.",
@@ -1812,8 +1390,7 @@
         "properties": {
           "id": {
             "description": "The activatable identifier.",
-            "type": "integer",
-            "minimum": 1
+            "type": "integer"
           },
           "instances": {
             "description": "One or multiple activations of the activatable.",
@@ -1918,8 +1495,7 @@
                               },
                               "value": {
                                 "description": "The numeric identifier.",
-                                "type": "integer",
-                                "minimum": 1
+                                "type": "integer"
                               }
                             },
                             "required": [
