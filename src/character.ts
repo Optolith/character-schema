@@ -957,6 +957,9 @@ export type Character = {
   pact?: {}
 }
 
+/**
+ * The character's sex. It does not have to be binary, although it always must be specified how to handle it in the context of binary sex prerequisites. You can also provide a custom sex with a custom name.
+ */
 export type Sex =
   | BinarySex
   | NonBinarySex
