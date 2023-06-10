@@ -945,7 +945,7 @@ export type Character = {
 
   items: {}
 
-  hit_zone_armors?: {},
+  hit_zone_armors?: {}
 
   /**
    * The money the character owns.
