@@ -287,7 +287,7 @@ export type Character = {
   }
 
   /**
-   * An object storing the identifiers of the profession, its instance and its optional race variant.
+   * An object storing the identifiers of the curriculum and it’s optional lesson package.
    * @title Curriculum Settings
    */
   curriculum?: {

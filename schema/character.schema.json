@@ -293,7 +293,7 @@
         },
         "curriculum": {
           "title": "Curriculum Settings",
-          "description": "An object storing the identifiers of the profession, its instance and its optional race variant.",
+          "description": "An object storing the identifiers of the curriculum and it’s optional lesson package.",
           "type": "object",
           "properties": {
             "educational_institution_id": {
@@ -975,6 +975,7 @@
       "additionalProperties": false
     },
     "Sex": {
+      "description": "The character's sex. It does not have to be binary, although it always must be specified how to handle it in the context of binary sex prerequisites. You can also provide a custom sex with a custom name.",
       "oneOf": [
         {
           "$ref": "#/definitions/BinarySex"
