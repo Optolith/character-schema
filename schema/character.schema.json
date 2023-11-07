@@ -8,8 +8,8 @@
       "type": "object",
       "properties": {
         "version": {
-          "title": "Optolith Version",
-          "description": "A valid semantic version (https://semver.org), representing the Optolith version this character was created with.",
+          "title": "Character Schema Version",
+          "description": "A valid semantic version (https://semver.org), representing the character schema version of this file.",
           "type": "string",
           "pattern": "^(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)(?:-((?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\\\.(?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\\+([0-9a-zA-Z-]+(?:\\\\.[0-9a-zA-Z-]+)*))?$"
         },

@@ -4,8 +4,8 @@
  */
 export type Character = {
   /**
-   * A valid semantic version (https://semver.org), representing the Optolith version this character was created with.
-   * @title Optolith Version
+   * A valid semantic version (https://semver.org), representing the character schema version of this file.
+   * @title Character Schema Version
    * @pattern ^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$
    */
   version: string
