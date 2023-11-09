@@ -13,7 +13,7 @@ export default {
   outputs: [
     {
       targetDir: schemaDir,
-      renderer: jsonSchema({ spec: "Draft_07" }),
+      renderer: jsonSchema({ spec: "Draft_07", allowAdditionalProperties: true }),
     }
   ],
   clean: true,

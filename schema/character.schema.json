@@ -45,115 +45,115 @@
               "description": "Adventure points available.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent": {
               "description": "Adventure points spent.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_advantages": {
               "description": "Adventure points spent on advantages.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_magical_advantages": {
               "description": "Adventure points spent on magical advantages.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_blessed_advantages": {
               "description": "Adventure points spent on blessed advantages.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_disadvantages": {
               "description": "Adventure points spent on disadvantages.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_magical_disadvantages": {
               "description": "Adventure points spent on magical disadvantages.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_blessed_disadvantages": {
               "description": "Adventure points spent on blessed disadvantages.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_race": {
               "description": "Adventure points spent on race.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_attributes": {
               "description": "Adventure points spent on attributes.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_skills": {
               "description": "Adventure points spent on skills.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_combat_techniques": {
               "description": "Adventure points spent on combat techniques.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_spells": {
               "description": "Adventure points spent on spells, rituals and its enhancements.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_cantrips": {
               "description": "Adventure points spent on cantrips.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_magical_actions": {
               "description": "Adventure points spent on all kinds of magical actions.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_liturgical_chants": {
               "description": "Adventure points spent on liturgical chant, ceremonies and its enhancements.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_blessings": {
               "description": "Adventure points spent on blessings.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_special_abilities": {
               "description": "Adventure points spent on all kinds of special abilities.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             },
             "spent_on_energies": {
               "description": "Adventure points spent on adding and buying back energy points.",
               "type": "integer",
               "minimum": 0,
-              "readOnly": false
+              "readOnly": true
             }
           },
           "required": [
@@ -178,7 +178,7 @@
             "spent_on_special_abilities",
             "spent_on_energies"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "experience_level": {
           "title": "Experience Level Settings",
@@ -196,14 +196,14 @@
               "type": "integer",
               "maximum": 7,
               "minimum": 1,
-              "readOnly": false
+              "readOnly": true
             }
           },
           "required": [
             "start_id",
             "current_id"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "is_character_creation_finished": {
           "title": "Character Creation Finished",
@@ -236,7 +236,7 @@
             "id",
             "selected_attribute_adjustment_id"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "culture": {
           "title": "Culture Settings",
@@ -257,7 +257,7 @@
             "id",
             "is_cultural_package_applied"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "profession": {
           "title": "Profession Settings",
@@ -289,7 +289,7 @@
             "id",
             "instance_id"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "curriculum": {
           "title": "Curriculum Settings",
@@ -311,7 +311,7 @@
           "required": [
             "educational_institution_id"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "rules": {
           "title": "Rules Settings",
@@ -336,7 +336,7 @@
                 "required": [
                   "id"
                 ],
-                "additionalProperties": false
+                "additionalProperties": true
               }
             },
             "active_focus_rules": {
@@ -353,7 +353,7 @@
                 "required": [
                   "id"
                 ],
-                "additionalProperties": false
+                "additionalProperties": true
               }
             },
             "active_optional_rules": {
@@ -378,7 +378,7 @@
                 "required": [
                   "id"
                 ],
-                "additionalProperties": false
+                "additionalProperties": true
               }
             }
           },
@@ -388,7 +388,7 @@
             "active_focus_rules",
             "active_optional_rules"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "personal_data": {
           "title": "Personal Data",
@@ -462,7 +462,7 @@
           "required": [
             "sex"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "advantages": {
           "title": "Advantages",
@@ -671,7 +671,7 @@
             }
           },
           "required": [],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "attributes": {
           "title": "Attributes",
@@ -736,7 +736,7 @@
             "movement",
             "wound_threshold"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "skills": {
           "title": "Skills",
@@ -772,7 +772,7 @@
             "melee",
             "ranged"
           ],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "cantrips": {
           "title": "Cantrips",
@@ -890,7 +890,7 @@
           },
           "required": [],
           "minProperties": 1,
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "blessings": {
           "title": "Blessings",
@@ -923,13 +923,13 @@
           "type": "object",
           "properties": {},
           "required": [],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "hit_zone_armors": {
           "type": "object",
           "properties": {},
           "required": [],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "purse": {
           "description": "The money the character owns.",
@@ -939,13 +939,13 @@
           "type": "object",
           "properties": {},
           "required": [],
-          "additionalProperties": false
+          "additionalProperties": true
         },
         "pact": {
           "type": "object",
           "properties": {},
           "required": [],
-          "additionalProperties": false
+          "additionalProperties": true
         }
       },
       "required": [
@@ -972,7 +972,7 @@
         "items",
         "purse"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "Sex": {
       "description": "The character's sex. It does not have to be binary, although it always must be specified how to handle it in the context of binary sex prerequisites. You can also provide a custom sex with a custom name.",
@@ -1006,7 +1006,7 @@
       "required": [
         "type"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "NonBinarySex": {
       "description": "A non-binary sex option.",
@@ -1031,7 +1031,7 @@
         "type",
         "binary_handling"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "CustomSex": {
       "description": "A custom non-binary sex option.",
@@ -1055,7 +1055,7 @@
         "name",
         "binary_handling"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "BinaryHandling": {
       "description": "Defines how a non-binary sex should be treated when checking prerequisites.",
@@ -1074,7 +1074,7 @@
         "as_male",
         "as_female"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "Color": {
       "oneOf": [
@@ -1102,7 +1102,7 @@
         "type",
         "id"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "CustomColor": {
       "description": "A custom color.",
@@ -1121,7 +1121,7 @@
         "type",
         "name"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "DerivedCharacteristic": {
       "type": "object",
@@ -1129,17 +1129,17 @@
         "base": {
           "description": "The base value.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         },
         "modifier": {
           "description": "The modifier depending on relevant advantages, disadvantages and special abilities.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         },
         "value": {
           "description": "The (final) value.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         }
       },
       "required": [
@@ -1147,7 +1147,7 @@
         "modifier",
         "value"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "Energy": {
       "type": "object",
@@ -1155,12 +1155,12 @@
         "base": {
           "description": "The base value.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         },
         "modifier": {
           "description": "The modifier depending on relevant advantages, disadvantages and special abilities.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         },
         "purchased": {
           "description": "The number of points purchased.",
@@ -1175,7 +1175,7 @@
         "maximum": {
           "description": "The (final) maximum.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         }
       },
       "required": [
@@ -1185,7 +1185,7 @@
         "permanently_lost",
         "maximum"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "EnergyWithBuyBack": {
       "type": "object",
@@ -1193,12 +1193,12 @@
         "base": {
           "description": "The base value.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         },
         "modifier": {
           "description": "The modifier depending on relevant advantages, disadvantages and special abilities.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         },
         "purchased": {
           "description": "The number of points purchased.",
@@ -1218,7 +1218,7 @@
         "maximum": {
           "description": "The (final) maximum.",
           "type": "integer",
-          "readOnly": false
+          "readOnly": true
         }
       },
       "required": [
@@ -1229,7 +1229,7 @@
         "permanently_lost_bought_back",
         "maximum"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "Attribute": {
       "type": "object",
@@ -1248,7 +1248,7 @@
         "id",
         "value"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "Skill": {
       "type": "object",
@@ -1267,7 +1267,7 @@
         "id",
         "value"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "CombatTechnique": {
       "type": "object",
@@ -1286,7 +1286,7 @@
         "id",
         "value"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "ActivatableRated": {
       "type": "object",
@@ -1305,7 +1305,7 @@
         "id",
         "value"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "ActivatableRatedWithEnhancements": {
       "type": "object",
@@ -1333,7 +1333,7 @@
         "id",
         "value"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "TinyActivatable": {
       "type": "object",
@@ -1346,7 +1346,7 @@
       "required": [
         "id"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "Purse": {
       "title": "Purse",
@@ -1380,7 +1380,7 @@
         "silverthalers",
         "ducats"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "Activatables": {
       "title": "Activatables",
@@ -1503,14 +1503,14 @@
                               "type",
                               "value"
                             ],
-                            "additionalProperties": false
+                            "additionalProperties": true
                           }
                         },
                         "required": [
                           "type",
                           "id"
                         ],
-                        "additionalProperties": false
+                        "additionalProperties": true
                       },
                       {
                         "type": "object",
@@ -1528,7 +1528,7 @@
                           "type",
                           "value"
                         ],
-                        "additionalProperties": false
+                        "additionalProperties": true
                       }
                     ]
                   },
@@ -1546,7 +1546,7 @@
                 }
               },
               "required": [],
-              "additionalProperties": false
+              "additionalProperties": true
             }
           }
         },
@@ -1554,7 +1554,7 @@
           "id",
           "instances"
         ],
-        "additionalProperties": false
+        "additionalProperties": true
       }
     }
   }
