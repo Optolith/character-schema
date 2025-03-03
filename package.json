@@ -29,8 +29,8 @@
   },
   "homepage": "https://github.com/Optolith/character-schema#readme",
   "devDependencies": {
+    "@optolith/ts-json-definition-transpiler": "^0.11.3",
     "@types/node": "^22.13.8",
-    "optolith-tsjsonschemamd": "^0.11.2",
     "typescript": "^5.8.2"
   },
   "type": "module"
