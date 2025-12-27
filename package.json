@@ -3,6 +3,7 @@
   "version": "0.2.1",
   "description": "Definitions for the characters of Optolith, a character creation tool for the Pen and Paper RPG “The Dark Eye 5”.",
   "files": [
+    "gen",
     "lib",
     "schema",
     "AUTHORS",

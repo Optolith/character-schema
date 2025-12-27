@@ -1,0 +1,1360 @@
+{
+  "$defs": {
+    "Character": {
+      "description": "An exported character object from Optolith.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The entity’s identifier. A UUID or a locale code if it is registered as the locale entity.",
+          "type": "string"
+        },
+        "version": {
+          "description": "A valid semantic version (https://semver.org), representing the character schema version of this file.",
+          "type": "string",
+          "pattern": "^(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)\\\\.(0|[1-9]\\\\d*)(?:-((?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\\\.(?:0|[1-9]\\\\d*|\\\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\\\+([0-9a-zA-Z-]+(?:\\\\.[0-9a-zA-Z-]+)*))?$"
+        },
+        "name": {
+          "description": "The character’s name.",
+          "type": "string",
+          "minLength": 1
+        },
+        "dateCreated": {
+          "description": "Date of character creation, in ISO8601 format.",
+          "type": "string",
+          "format": "date"
+        },
+        "dateLastModified": {
+          "description": "Date of character last modified, in ISO8601 format.",
+          "type": "string",
+          "format": "date"
+        },
+        "adventurePoints": {
+          "description": "An object storing all kinds of basic and calculated adventure points.",
+          "$ref": "#/$defs/AdventurePoints"
+        },
+        "experienceLevel": {
+          "description": "An object storing the identifiers of the experience level the character started at and the current experience level, derived from total adventure points.",
+          "$ref": "#/$defs/ExperienceLevel"
+        },
+        "isCharacterCreationFinished": {
+          "description": "Describes whether the character creation is finished.",
+          "type": "boolean"
+        },
+        "race": {
+          "description": "An object storing the identifiers of the race and its optional race variant.",
+          "$ref": "#/$defs/Race"
+        },
+        "culture": {
+          "description": "An object storing the identifier of the culture and if the cultural package has been applied.",
+          "$ref": "#/$defs/Culture"
+        },
+        "profession": {
+          "description": "An object storing the identifiers of the profession, its instance and its optional profession variant.",
+          "$ref": "#/$defs/Profession"
+        },
+        "curriculum": {
+          "description": "An object storing the identifiers of the curriculum and it’s optional lesson package.",
+          "$ref": "#/$defs/Curriculum"
+        },
+        "rules": {
+          "description": "The rules settings for the character.",
+          "$ref": "#/$defs/Rules"
+        },
+        "personalData": {
+          "description": "Personal data such as hair color and place of birth.",
+          "$ref": "#/$defs/PersonalData"
+        },
+        "advantages": {
+          "description": "A list of active advantages.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Activatable"
+          },
+          "minItems": 1
+        },
+        "disadvantages": {
+          "description": "A list of active disadvantages.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Activatable"
+          },
+          "minItems": 1
+        },
+        "specialAbilities": {
+          "description": "Lists of active special abilities, by group.\n\nThis object may grow if new special ability groups are introduced, which is not considered a breaking change.",
+          "type": "object",
+          "properties": {
+            "advancedCombatSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "advancedKarmaSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "advancedMagicalSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "advancedSkillSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "ancestorGlyphs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "arcaneOrbEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "attireEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "beutelzauber": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "blessedTraditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "bowlEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "brawlingSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "cauldronEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "ceremonialItemSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "chronicleEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "combatSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "combatStyleSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "commandSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "daggerRituals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "familiarSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "fatePointSexSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "fatePointSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "foolsHatEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "generalSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "haubenzauber": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "instrumentEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "karmaSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "krallenkettenzauber": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "kristallkugelzauber": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "liturgicalStyleSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "lycantropicGifts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "magicalSigns": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "magicalSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "magicalTraditions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "magicStyleSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "orbEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "pactGifts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "protectiveWardingCircleSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "ringEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "sermons": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "sexSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "sickleRituals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "sikaryanDrainSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "skillStyleSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "spellSwordEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "staffEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "toyEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "trinkhornzauber": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "vampiricGifts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "visions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "wandEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "weaponEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            }
+          },
+          "required": [],
+          "minProperties": 1
+        },
+        "attributes": {
+          "description": "A list of attributes with values above 8. Attributes that are not listed here default to 8.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Attribute"
+          }
+        },
+        "derivedCharacteristics": {
+          "description": "Computed, set and bought values for/of derived characteristics.",
+          "type": "object",
+          "properties": {
+            "lifePoints": {
+              "$ref": "#/$defs/Energy"
+            },
+            "arcaneEnergy": {
+              "description": "This property does not exist if the character does not have the active advantage Spellcaster and an active magical tradition special ability.",
+              "$ref": "#/$defs/EnergyWithBuyBack"
+            },
+            "karmaPoints": {
+              "description": "This property does not exist if the character does not have the active advantage Blessed One and an active blessed tradition special ability.",
+              "$ref": "#/$defs/EnergyWithBuyBack"
+            },
+            "spirit": {
+              "$ref": "#/$defs/DerivedCharacteristic"
+            },
+            "toughness": {
+              "$ref": "#/$defs/DerivedCharacteristic"
+            },
+            "dodge": {
+              "$ref": "#/$defs/DerivedCharacteristic"
+            },
+            "initiative": {
+              "$ref": "#/$defs/DerivedCharacteristic"
+            },
+            "movement": {
+              "$ref": "#/$defs/DerivedCharacteristic"
+            },
+            "woundThreshold": {
+              "description": "This property is not present if the required focus rules are not activated.",
+              "$ref": "#/$defs/DerivedCharacteristic"
+            }
+          },
+          "required": [
+            "lifePoints",
+            "spirit",
+            "toughness",
+            "dodge",
+            "initiative",
+            "movement"
+          ]
+        },
+        "skills": {
+          "description": "A list of skills with values above 0. Skills that are not listed here default to 0.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Skill"
+          }
+        },
+        "combatTechniques": {
+          "description": "Lists of combat techniques, by group.",
+          "type": "object",
+          "properties": {
+            "melee": {
+              "description": "A list of melee combat techniques with values above 6. Combat techniques that are not listed here default to 6.",
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CombatTechnique"
+              }
+            },
+            "ranged": {
+              "description": "A list of ranged combat techniques with values above 6. Combat techniques that are not listed here default to 6.",
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/CombatTechnique"
+              }
+            }
+          },
+          "required": [
+            "melee",
+            "ranged"
+          ]
+        },
+        "cantrips": {
+          "description": "A list of purchased cantrips.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TinyActivatable"
+          },
+          "minItems": 1
+        },
+        "spells": {
+          "description": "A list of active spells.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActivatableRatedWithEnhancements"
+          },
+          "minItems": 1
+        },
+        "rituals": {
+          "description": "A list of active rituals.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActivatableRatedWithEnhancements"
+          },
+          "minItems": 1
+        },
+        "magicalActions": {
+          "description": "Lists of magical actions, by group.\n\nThis object may grow if new magical actions are introduced, which is not considered a breaking change.",
+          "type": "object",
+          "properties": {
+            "curses": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "elvenMagicalSongs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "dominationRituals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "magicalMelodies": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "magicalDances": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "jesterTricks": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "animistPowers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "geodeRituals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "zibiljaRituals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "magicalRunes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            }
+          },
+          "required": [],
+          "minProperties": 1
+        },
+        "blessings": {
+          "description": "A list of purchased blessings.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TinyActivatable"
+          },
+          "minItems": 1
+        },
+        "liturgicalChants": {
+          "description": "A list of active liturgical chants.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActivatableRatedWithEnhancements"
+          },
+          "minItems": 1
+        },
+        "ceremonies": {
+          "description": "A list of active ceremonies.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ActivatableRatedWithEnhancements"
+          },
+          "minItems": 1
+        },
+        "purse": {
+          "description": "The money the character owns.",
+          "$ref": "#/$defs/Purse"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "name",
+        "dateCreated",
+        "dateLastModified",
+        "adventurePoints",
+        "experienceLevel",
+        "isCharacterCreationFinished",
+        "race",
+        "culture",
+        "profession",
+        "rules",
+        "personalData",
+        "advantages",
+        "disadvantages",
+        "specialAbilities",
+        "attributes",
+        "derivedCharacteristics",
+        "skills",
+        "combatTechniques",
+        "purse"
+      ]
+    },
+    "Character_ID": {
+      "description": "The entity’s identifier. A UUID or a locale code if it is registered as the locale entity.",
+      "type": "string"
+    },
+    "AdventurePoints": {
+      "description": "An object storing all kinds of basic and calculated adventure points.",
+      "type": "object",
+      "properties": {
+        "total": {
+          "description": "Total adventure points.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "available": {
+          "description": "Adventure points available.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spent": {
+          "description": "Adventure points spent.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnAdvantages": {
+          "description": "Adventure points spent on advantages.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnMagicalAdvantages": {
+          "description": "Adventure points spent on magical advantages.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnBlessedAdvantages": {
+          "description": "Adventure points spent on blessed advantages.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnDisadvantages": {
+          "description": "Adventure points spent on disadvantages.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnMagicalAisadvantages": {
+          "description": "Adventure points spent on magical disadvantages.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnBlessedDisadvantages": {
+          "description": "Adventure points spent on blessed disadvantages.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnRace": {
+          "description": "Adventure points spent on race.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnAttributes": {
+          "description": "Adventure points spent on attributes.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnSkills": {
+          "description": "Adventure points spent on skills.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnCombatTechniques": {
+          "description": "Adventure points spent on combat techniques.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnSpells": {
+          "description": "Adventure points spent on spells, rituals and its enhancements.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnCantrips": {
+          "description": "Adventure points spent on cantrips.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnMagicalActions": {
+          "description": "Adventure points spent on all kinds of magical actions.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnMiturgicalChants": {
+          "description": "Adventure points spent on liturgical chant, ceremonies and its enhancements.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnBlessings": {
+          "description": "Adventure points spent on blessings.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnSpecialAbilities": {
+          "description": "Adventure points spent on all kinds of special abilities.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        },
+        "spentOnEnergies": {
+          "description": "Adventure points spent on adding and buying back energy points.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "total",
+        "available",
+        "spent",
+        "spentOnAdvantages",
+        "spentOnMagicalAdvantages",
+        "spentOnBlessedAdvantages",
+        "spentOnDisadvantages",
+        "spentOnMagicalAisadvantages",
+        "spentOnBlessedDisadvantages",
+        "spentOnRace",
+        "spentOnAttributes",
+        "spentOnSkills",
+        "spentOnCombatTechniques",
+        "spentOnSpells",
+        "spentOnCantrips",
+        "spentOnMagicalActions",
+        "spentOnMiturgicalChants",
+        "spentOnBlessings",
+        "spentOnSpecialAbilities",
+        "spentOnEnergies"
+      ]
+    },
+    "ExperienceLevel": {
+      "description": "An object storing the identifiers of the experience level the character started at and the current experience level, derived from total adventure points.",
+      "type": "object",
+      "properties": {
+        "start": {
+          "description": "The start experience level identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "current": {
+          "description": "The current experience level identifier.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "$ref": "#/$defs/UUIDv4"
+        }
+      },
+      "required": [
+        "start",
+        "current"
+      ]
+    },
+    "UUIDv4": {
+      "description": "An UUIDv4 identifier of an entry in the Optolith database.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "Race": {
+      "description": "An object storing the identifiers of the race and its optional race variant.",
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The base race.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "variant": {
+          "description": "The race variant.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "selectedAttributeAdjustment": {
+          "description": "The identifier of the attribute adjustment that has been selected from the race.",
+          "$ref": "#/$defs/UUIDv4"
+        }
+      },
+      "required": [
+        "base",
+        "selectedAttributeAdjustment"
+      ]
+    },
+    "Culture": {
+      "description": "An object storing the identifier of the culture and if the cultural package has been applied.",
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The culture identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "isCulturalPackageApplied": {
+          "description": "Describes whether the cultural package has been applied when creating the character.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "base",
+        "isCulturalPackageApplied"
+      ]
+    },
+    "Profession": {
+      "description": "An object storing the identifiers of the profession, its instance and its optional profession variant.",
+      "type": "object",
+      "properties": {
+        "package": {
+          "description": "The profession instance identifier. Profession instances are versions of the same profession but slightly different values, such as in extension rule books existing professions might get an additional style special ability.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "variant": {
+          "description": "The profession variant identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "customName": {
+          "description": "A custom name for the profession, if provided.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "package"
+      ]
+    },
+    "Curriculum": {
+      "description": "An object storing the identifiers of the curriculum and it’s optional lesson package.",
+      "type": "object",
+      "properties": {
+        "educationalInstitution": {
+          "description": "The educational institution's curriculum identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "lessonPackage": {
+          "description": "The lesson package identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        }
+      },
+      "required": [
+        "educationalInstitution"
+      ]
+    },
+    "Rules": {
+      "description": "The rules settings for the character.",
+      "type": "object",
+      "properties": {
+        "includeAllPublications": {
+          "description": "Whether the character makes use of all publications except for publications with adult content and adventures, which have to be specified explicitly using `includePublications`.",
+          "type": "boolean"
+        },
+        "includePublications": {
+          "description": "Explicitly used publications. If `includeAllPublications` is set to `true`, only affects publications that are not covered by `includeAllPublications`.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UUIDv4"
+          }
+        },
+        "focusRules": {
+          "description": "Active focus rules.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FocusRule"
+          }
+        },
+        "optionalRules": {
+          "description": "Active optional rules. Each optional rule may have one or more options selected.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/OptionalRule"
+          }
+        }
+      },
+      "required": [
+        "includeAllPublications",
+        "includePublications",
+        "focusRules",
+        "optionalRules"
+      ]
+    },
+    "FocusRule": {
+      "description": "An active focus rule.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The focus rule identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "OptionalRule": {
+      "description": "An active optional rule. An optional rule may have one or more options selected.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The optional rule identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "options": {
+          "description": "An array of one or more options. The exact meaning of each option varies based on the optional rule.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UUIDv4"
+          },
+          "minItems": 1
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "PersonalData": {
+      "description": "Personal data such as hair color and place of birth.",
+      "type": "object",
+      "properties": {
+        "sex": {
+          "description": "The character’s sex. It does not have to be binary, although it always must be specified how to handle it in the context of binary sex prerequisites. You can also provide a custom sex with a custom name.",
+          "type": "string",
+          "minLength": 1
+        },
+        "family": {
+          "description": "The family names and/or family members.",
+          "type": "string",
+          "minLength": 1
+        },
+        "placeOfBirth": {
+          "description": "The place where the character was born.",
+          "type": "string",
+          "minLength": 1
+        },
+        "dateOfBirth": {
+          "description": "The date when the character was born.",
+          "type": "string",
+          "minLength": 1
+        },
+        "age": {
+          "description": "The age of the character.",
+          "type": "string",
+          "minLength": 1
+        },
+        "hairColor": {
+          "description": "The hair color of the character.",
+          "$ref": "#/$defs/Color"
+        },
+        "eyeColor": {
+          "description": "The eye color of the character.",
+          "$ref": "#/$defs/Color"
+        },
+        "size": {
+          "description": "The size of the character.",
+          "type": "string",
+          "minLength": 1
+        },
+        "weight": {
+          "description": "The weight of the character.",
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "description": "The character’s title(s).",
+          "type": "string",
+          "minLength": 1
+        },
+        "socialStatus": {
+          "description": "The social status.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "characteristics": {
+          "description": "The character’s characteristics.",
+          "type": "string",
+          "minLength": 1
+        },
+        "otherInfo": {
+          "description": "Other information about the character.",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "sex"
+      ]
+    },
+    "Color": {
+      "description": "A color, either predefined or custom.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "Predefined"
+            },
+            "Predefined": {
+              "$ref": "#/$defs/UUIDv4"
+            }
+          },
+          "required": [
+            "kind",
+            "Predefined"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "const": "Custom"
+            },
+            "Custom": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "Custom"
+          ]
+        }
+      ]
+    },
+    "Activatable": {
+      "description": "An activatable item reference. Activatables are advantages, disadvantages and special abilities.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "Attribute": {
+      "description": "An attribute with its value.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The attribute identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "value": {
+          "description": "The attribute value.",
+          "type": "integer",
+          "minimum": 9
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ]
+    },
+    "Energy": {
+      "description": "A derived characteristic representing an energy where points can be purchased and permanently lost.",
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The base value.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        },
+        "modifier": {
+          "description": "The modifier depending on relevant advantages, disadvantages and special abilities.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        },
+        "purchased": {
+          "description": "The number of points purchased.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "permanently_lost": {
+          "description": "The number of points permanently lost.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum": {
+          "description": "The (final) maximum.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "base",
+        "modifier",
+        "purchased",
+        "permanently_lost",
+        "maximum"
+      ]
+    },
+    "EnergyWithBuyBack": {
+      "description": "A derived characteristic representing an energy where points can be purchased and permanently lost, with the option to buy back lost points.",
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The base value.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        },
+        "modifier": {
+          "description": "The modifier depending on relevant advantages, disadvantages and special abilities.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        },
+        "purchased": {
+          "description": "The number of points purchased.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "permanently_lost": {
+          "description": "The number of points permanently lost.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "permanently_lost_bought_back": {
+          "description": "The number of permanently lost points that have been bought back.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "maximum": {
+          "description": "The (final) maximum.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "base",
+        "modifier",
+        "purchased",
+        "permanently_lost",
+        "permanently_lost_bought_back",
+        "maximum"
+      ]
+    },
+    "DerivedCharacteristic": {
+      "description": "A derived characteristic with its calculated parts.",
+      "type": "object",
+      "properties": {
+        "base": {
+          "description": "The base value.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        },
+        "modifier": {
+          "description": "The modifier depending on relevant advantages, disadvantages and special abilities.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        },
+        "value": {
+          "description": "The (final) value.\n\n*Note: This value is read-only and recalculated by Optolith. Setting it to a different value will not influence calculation in Optolith.*",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "base",
+        "modifier",
+        "value"
+      ]
+    },
+    "Skill": {
+      "description": "A skill with its rating.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The skill identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "value": {
+          "description": "The skill rating.",
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ]
+    },
+    "CombatTechnique": {
+      "description": "A combat technique with its rating.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The combat technique identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "value": {
+          "description": "The combat technique rating.",
+          "type": "integer",
+          "minimum": 7
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ]
+    },
+    "TinyActivatable": {
+      "description": "A tiny activatable item reference.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "ActivatableRatedWithEnhancements": {
+      "description": "An activatable item with its rating and purchased enhancements.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The skill identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "value": {
+          "description": "The skill rating.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "enhancements": {
+          "description": "Purchased enhancements.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/UUIDv4"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "id",
+        "value",
+        "enhancements"
+      ]
+    },
+    "ActivatableRated": {
+      "description": "An activatable item with its rating.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The skill identifier.",
+          "$ref": "#/$defs/UUIDv4"
+        },
+        "value": {
+          "description": "The skill rating.",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "id",
+        "value"
+      ]
+    },
+    "Purse": {
+      "description": "The money the character owns.",
+      "type": "object",
+      "properties": {
+        "kreutzers": {
+          "description": "The number of kreutzers the character owns.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "halers": {
+          "description": "The number of halers the character owns.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "silverthalers": {
+          "description": "The number of silverthalers the character owns.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "ducats": {
+          "description": "The number of ducats the character owns.",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "kreutzers",
+        "halers",
+        "silverthalers",
+        "ducats"
+      ]
+    }
+  }
+}
