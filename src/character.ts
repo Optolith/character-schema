@@ -153,6 +153,9 @@ export const Character = Entity(import.meta.filename, {
           movement: Required({
             type: IncludeIdentifier(DerivedCharacteristic),
           }),
+          fatePoints: Required({
+            type: IncludeIdentifier(DerivedCharacteristic),
+          }),
           woundThreshold: Optional({
             comment: "This property is not present if the required focus rules are not activated.",
             type: IncludeIdentifier(DerivedCharacteristic),

@@ -169,6 +169,8 @@ export interface Character {
 
     movement: DerivedCharacteristic
 
+    fatePoints: DerivedCharacteristic
+
     /**
      * This property is not present if the required focus rules are not activated.
      */

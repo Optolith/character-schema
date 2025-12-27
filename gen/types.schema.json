@@ -482,6 +482,9 @@
             "movement": {
               "$ref": "#/$defs/DerivedCharacteristic"
             },
+            "fatePoints": {
+              "$ref": "#/$defs/DerivedCharacteristic"
+            },
             "woundThreshold": {
               "description": "This property is not present if the required focus rules are not activated.",
               "$ref": "#/$defs/DerivedCharacteristic"
@@ -493,7 +496,8 @@
             "toughness",
             "dodge",
             "initiative",
-            "movement"
+            "movement",
+            "fatePoints"
           ]
         },
         "skills": {
