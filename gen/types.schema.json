@@ -84,6 +84,13 @@
           "description": "Lists of active special abilities, by group.\n\nThis object may grow if new special ability groups are introduced, which is not considered a breaking change.",
           "type": "object",
           "properties": {
+            "adoruzepterzauber": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
             "advancedCombatSpecialAbilities": {
               "type": "array",
               "items": {
@@ -252,6 +259,13 @@
               },
               "minItems": 1
             },
+            "hauerkettenzauber": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
             "instrumentEnchantments": {
               "type": "array",
               "items": {
@@ -260,6 +274,13 @@
               "minItems": 1
             },
             "karmaSpecialAbilities": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "keulenzauber": {
               "type": "array",
               "items": {
                 "$ref": "#/$defs/Activatable"
@@ -344,6 +365,13 @@
               "minItems": 1
             },
             "ringEnchantments": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Activatable"
+              },
+              "minItems": 1
+            },
+            "schweinetrommelzauber": {
               "type": "array",
               "items": {
                 "$ref": "#/$defs/Activatable"
@@ -559,6 +587,13 @@
           "description": "Lists of magical actions, by group.\n\nThis object may grow if new magical actions are introduced, which is not considered a breaking change.",
           "type": "object",
           "properties": {
+            "bannzeichen": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
             "curses": {
               "type": "array",
               "items": {
@@ -609,6 +644,13 @@
               "minItems": 1
             },
             "geodeRituals": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ActivatableRated"
+              },
+              "minItems": 1
+            },
+            "goblinRituals": {
               "type": "array",
               "items": {
                 "$ref": "#/$defs/ActivatableRated"

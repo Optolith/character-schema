@@ -1,87 +1,78 @@
-import {
-  Enum,
-  EnumCase,
-  IncludeIdentifier,
-  Object,
-  Optional,
-  Required,
-  String,
-  TypeAlias,
-} from "tsondb/schema/def"
-import { UUIDv4 } from "./utils.js"
+import * as DB from "tsondb/schema/dsl";
+import { UUIDv4 } from "./utils.js";
 
-export const PersonalData = TypeAlias(import.meta.filename, {
+export const PersonalData = DB.TypeAlias(import.meta.filename, {
   name: "PersonalData",
   comment: "Personal data such as hair color and place of birth.",
   type: () =>
-    Object({
-      sex: Required({
+    DB.Object({
+      sex: DB.Required({
         comment:
           "The character’s sex. It does not have to be binary, although it always must be specified how to handle it in the context of binary sex prerequisites. You can also provide a custom sex with a custom name.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      family: Optional({
+      family: DB.Optional({
         comment: "The family names and/or family members.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      placeOfBirth: Optional({
+      placeOfBirth: DB.Optional({
         comment: "The place where the character was born.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      dateOfBirth: Optional({
+      dateOfBirth: DB.Optional({
         comment: "The date when the character was born.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      age: Optional({
+      age: DB.Optional({
         comment: "The age of the character.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      hairColor: Optional({
+      hairColor: DB.Optional({
         comment: "The hair color of the character.",
-        type: IncludeIdentifier(Color),
+        type: DB.IncludeIdentifier(Color),
       }),
-      eyeColor: Optional({
+      eyeColor: DB.Optional({
         comment: "The eye color of the character.",
-        type: IncludeIdentifier(Color),
+        type: DB.IncludeIdentifier(Color),
       }),
-      size: Optional({
+      size: DB.Optional({
         comment: "The size of the character.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      weight: Optional({
+      weight: DB.Optional({
         comment: "The weight of the character.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      title: Optional({
+      title: DB.Optional({
         comment: "The character’s title(s).",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      socialStatus: Optional({
+      socialStatus: DB.Optional({
         comment: "The social status.",
-        type: IncludeIdentifier(UUIDv4),
+        type: DB.IncludeIdentifier(UUIDv4),
       }),
-      characteristics: Optional({
+      characteristics: DB.Optional({
         comment: "The character’s characteristics.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
-      otherInfo: Optional({
+      otherInfo: DB.Optional({
         comment: "Other information about the character.",
-        type: String({ minLength: 1 }),
+        type: DB.String({ minLength: 1 }),
       }),
     }),
-})
+});
 
-const Color = Enum(import.meta.filename, {
+const Color = DB.Enum(import.meta.filename, {
   name: "Color",
   comment: "A color, either predefined or custom.",
   values: () => ({
-    Predefined: EnumCase({
+    Predefined: DB.EnumCase({
       comment: "A predefined color.",
-      type: IncludeIdentifier(UUIDv4),
+      type: DB.IncludeIdentifier(UUIDv4),
     }),
-    Custom: EnumCase({
+    Custom: DB.EnumCase({
       comment: "A custom color.",
-      type: String({ minLength: 1 }),
+      type: DB.String({ minLength: 1 }),
     }),
   }),
-})
+});

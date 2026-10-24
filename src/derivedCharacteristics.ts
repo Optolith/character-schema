@@ -1,90 +1,90 @@
-import { Integer, Object, Required, TypeAlias } from "tsondb/schema/def"
-import { READ_ONLY_NOTE } from "./utils.js"
+import * as DB from "tsondb/schema/dsl";
+import { READ_ONLY_NOTE } from "./utils.js";
 
-export const DerivedCharacteristic = TypeAlias(import.meta.filename, {
+export const DerivedCharacteristic = DB.TypeAlias(import.meta.filename, {
   name: "DerivedCharacteristic",
   comment: "A derived characteristic with its calculated parts.",
   type: () =>
-    Object({
-      base: Required({
+    DB.Object({
+      base: DB.Required({
         comment: "The base value." + READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
-      modifier: Required({
+      modifier: DB.Required({
         comment:
           "The modifier depending on relevant advantages, disadvantages and special abilities." +
           READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
-      value: Required({
+      value: DB.Required({
         comment: "The (final) value." + READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
     }),
-})
+});
 
-export const Energy = TypeAlias(import.meta.filename, {
+export const Energy = DB.TypeAlias(import.meta.filename, {
   name: "Energy",
   comment:
     "A derived characteristic representing an energy where points can be purchased and permanently lost.",
   type: () =>
-    Object({
-      base: Required({
+    DB.Object({
+      base: DB.Required({
         comment: "The base value." + READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
-      modifier: Required({
+      modifier: DB.Required({
         comment:
           "The modifier depending on relevant advantages, disadvantages and special abilities." +
           READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
-      purchased: Required({
+      purchased: DB.Required({
         comment: "The number of points purchased.",
-        type: Integer({ minimum: 0 }),
+        type: DB.Integer({ minimum: 0 }),
       }),
-      permanently_lost: Required({
+      permanently_lost: DB.Required({
         comment: "The number of points permanently lost.",
-        type: Integer({ minimum: 0 }),
+        type: DB.Integer({ minimum: 0 }),
       }),
-      maximum: Required({
+      maximum: DB.Required({
         comment: "The (final) maximum." + READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
     }),
-})
+});
 
-export const EnergyWithBuyBack = TypeAlias(import.meta.filename, {
+export const EnergyWithBuyBack = DB.TypeAlias(import.meta.filename, {
   name: "EnergyWithBuyBack",
   comment:
     "A derived characteristic representing an energy where points can be purchased and permanently lost, with the option to buy back lost points.",
   type: () =>
-    Object({
-      base: Required({
+    DB.Object({
+      base: DB.Required({
         comment: "The base value." + READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
-      modifier: Required({
+      modifier: DB.Required({
         comment:
           "The modifier depending on relevant advantages, disadvantages and special abilities." +
           READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
-      purchased: Required({
+      purchased: DB.Required({
         comment: "The number of points purchased.",
-        type: Integer({ minimum: 0 }),
+        type: DB.Integer({ minimum: 0 }),
       }),
-      permanently_lost: Required({
+      permanently_lost: DB.Required({
         comment: "The number of points permanently lost.",
-        type: Integer({ minimum: 0 }),
+        type: DB.Integer({ minimum: 0 }),
       }),
-      permanently_lost_bought_back: Required({
+      permanently_lost_bought_back: DB.Required({
         comment: "The number of permanently lost points that have been bought back.",
-        type: Integer({ minimum: 0 }),
+        type: DB.Integer({ minimum: 0 }),
       }),
-      maximum: Required({
+      maximum: DB.Required({
         comment: "The (final) maximum." + READ_ONLY_NOTE,
-        type: Integer(),
+        type: DB.Integer(),
       }),
     }),
-})
+});

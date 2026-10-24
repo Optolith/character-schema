@@ -1,89 +1,78 @@
-import { SelectOptionIdentifier } from "optolith-database-schema/types/_IdentifierGroup"
-import {
-  Array,
-  Enum,
-  EnumCase,
-  IncludeIdentifier,
-  Integer,
-  Object as Object_,
-  Optional,
-  Required,
-  String,
-  TypeAlias,
-} from "tsondb/schema/def"
-import { UUIDv4 } from "./utils.js"
+import { SelectOptionIdentifier } from "@optolith/database-schema/types/_IdentifierGroup";
+import * as DB from "tsondb/schema/dsl";
+import { UUIDv4 } from "./utils.js";
 
-export const TinyActivatable = TypeAlias(import.meta.filename, {
+export const TinyActivatable = DB.TypeAlias(import.meta.filename, {
   name: "TinyActivatable",
   comment: "A tiny activatable item reference.",
   type: () =>
-    Object_({
-      id: Required({
+    DB.Object({
+      id: DB.Required({
         comment: "The identifier.",
-        type: IncludeIdentifier(UUIDv4),
+        type: DB.IncludeIdentifier(UUIDv4),
       }),
     }),
-})
+});
 
-export const Activatable = TypeAlias(import.meta.filename, {
+export const Activatable = DB.TypeAlias(import.meta.filename, {
   name: "Activatable",
   comment:
     "An activatable item reference. Activatables are advantages, disadvantages and special abilities.",
   type: () =>
-    Object_({
-      id: Required({
+    DB.Object({
+      id: DB.Required({
         comment: "The identifier.",
-        type: IncludeIdentifier(UUIDv4),
+        type: DB.IncludeIdentifier(UUIDv4),
       }),
     }),
-})
+});
 
-export const ActivatableInstance = TypeAlias(import.meta.filename, {
+export const ActivatableInstance = DB.TypeAlias(import.meta.filename, {
   name: "ActivatableInstance",
   comment: "An instance of an activatable item.",
   type: () =>
-    Object_({
-      options: Optional({
+    DB.Object({
+      options: DB.Optional({
         comment:
           "One or multiple options for the activatable. The meaning depends on the activatable.",
-        type: Array(IncludeIdentifier(ActivatableInstanceOption), { minItems: 1 }),
+        type: DB.Array(DB.IncludeIdentifier(ActivatableInstanceOption), { minItems: 1 }),
       }),
-      level: Optional({
+      level: DB.Optional({
         comment: "The instance level (if the activatable has levels).",
-        type: Integer({ minimum: 1 }),
+        type: DB.Integer({ minimum: 1 }),
       }),
-      custom_adventure_points_value: Optional({
+      custom_adventure_points_value: DB.Optional({
         comment: "If provided, a custom adventure points value has been set for this instance.",
-        type: Integer({ minimum: 0 }),
+        type: DB.Integer({ minimum: 0 }),
       }),
     }),
-})
+});
 
-export const ActivatableInstanceOption = Enum(import.meta.filename, {
+export const ActivatableInstanceOption = DB.Enum(import.meta.filename, {
   name: "ActivatableInstanceOption",
   comment: "An activatable option, either predefined or custom.",
   values: () => ({
-    Predefined: EnumCase({
+    Predefined: DB.EnumCase({
       comment: "A predefined option.",
-      type: IncludeIdentifier(ReferencedErasedSelectOptionIdentifier),
+      type: DB.IncludeIdentifier(ReferencedErasedSelectOptionIdentifier),
     }),
-    Custom: EnumCase({
+    Custom: DB.EnumCase({
       comment: "A custom option.",
-      type: String({ minLength: 1 }),
+      type: DB.String({ minLength: 1 }),
     }),
   }),
-})
+});
 
-const ReferencedErasedSelectOptionIdentifier = Enum(import.meta.filename, {
+const ReferencedErasedSelectOptionIdentifier = DB.Enum(import.meta.filename, {
   name: "ReferencedErasedSelectOptionIdentifier",
   values: () =>
     Object.fromEntries(
-      Object.keys(SelectOptionIdentifier.type.value.values).map(name => [
+      Object.keys(SelectOptionIdentifier.type.value.values).map((name) => [
         name,
-        EnumCase({ type: IncludeIdentifier(UUIDv4) }),
-      ])
+        DB.EnumCase({ type: DB.IncludeIdentifier(UUIDv4) }),
+      ]),
     ) as Record<
       keyof typeof SelectOptionIdentifier.type.value.values,
-      EnumCase<IncludeIdentifier<[], typeof UUIDv4>>
+      DB.EnumCase<DB.IncludeIdentifier<[], typeof UUIDv4>>
     >,
-})
+});

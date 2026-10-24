@@ -17,12 +17,12 @@ export interface Character {
   /**
    * Date of character creation, in ISO8601 format.
    */
-  dateCreated: Date
+  dateCreated: string
 
   /**
    * Date of character last modified, in ISO8601 format.
    */
-  dateLastModified: Date
+  dateLastModified: string
 
   /**
    * An object storing all kinds of basic and calculated adventure points.
@@ -85,6 +85,7 @@ export interface Character {
    * This object may grow if new special ability groups are introduced, which is not considered a breaking change.
    */
   specialAbilities: {
+    adoruzepterzauber?: Activatable[]
     advancedCombatSpecialAbilities?: Activatable[]
     advancedKarmaSpecialAbilities?: Activatable[]
     advancedMagicalSpecialAbilities?: Activatable[]
@@ -109,8 +110,10 @@ export interface Character {
     foolsHatEnchantments?: Activatable[]
     generalSpecialAbilities?: Activatable[]
     haubenzauber?: Activatable[]
+    hauerkettenzauber?: Activatable[]
     instrumentEnchantments?: Activatable[]
     karmaSpecialAbilities?: Activatable[]
+    keulenzauber?: Activatable[]
     krallenkettenzauber?: Activatable[]
     kristallkugelzauber?: Activatable[]
     liturgicalStyleSpecialAbilities?: Activatable[]
@@ -123,6 +126,7 @@ export interface Character {
     pactGifts?: Activatable[]
     protectiveWardingCircleSpecialAbilities?: Activatable[]
     ringEnchantments?: Activatable[]
+    schweinetrommelzauber?: Activatable[]
     sermons?: Activatable[]
     sexSpecialAbilities?: Activatable[]
     sickleRituals?: Activatable[]
@@ -218,6 +222,7 @@ export interface Character {
    * This object may grow if new magical actions are introduced, which is not considered a breaking change.
    */
   magicalActions?: {
+    bannzeichen?: ActivatableRated[]
     curses?: ActivatableRated[]
     elvenMagicalSongs?: ActivatableRated[]
     dominationRituals?: ActivatableRated[]
@@ -226,6 +231,7 @@ export interface Character {
     jesterTricks?: ActivatableRated[]
     animistPowers?: ActivatableRated[]
     geodeRituals?: ActivatableRated[]
+    goblinRituals?: ActivatableRated[]
     zibiljaRituals?: ActivatableRated[]
     magicalRunes?: ActivatableRated[]
   }
