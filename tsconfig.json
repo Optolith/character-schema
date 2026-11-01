@@ -1,17 +1,32 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
     "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "lib": ["ESNext"],
     "module": "NodeNext",
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
-    "outDir": "lib",
-    "rootDir": "src",
+    "noUncheckedSideEffectImports": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": "types",
     "strict": true,
     "target": "ESNext",
-    "types": ["node"]
+    "types": ["node"],
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true,
   },
   "include": [
-    "src/**/*"
+    "types/**/*"
   ]
 }
