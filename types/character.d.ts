@@ -15,10 +15,9 @@ import type {
 import type { Rules } from "./rules.ts"
 import type { UUIDv4 } from "./utils.ts"
 
-/**
- * An exported character object from Optolith.
- */
-export interface Character {
+export interface CharacterInRaceCultureProfessionSelection {
+  phase: "RaceCultureProfession"
+
   /**
    * A valid semantic version (https://semver.org), representing the character schema version of this file.
    */
@@ -50,11 +49,6 @@ export interface Character {
   experienceLevel: ExperienceLevel
 
   /**
-   * Describes whether the character creation is finished.
-   */
-  isCharacterCreationFinished: boolean
-
-  /**
    * An object storing the identifiers of the race and its optional race variant.
    */
   race?: Race
@@ -68,6 +62,70 @@ export interface Character {
    * An object storing the identifiers of the profession, its instance and its optional profession variant.
    */
   profession?: Profession
+
+  /**
+   * An object storing the identifiers of the curriculum and it’s optional lesson package.
+   */
+  curriculum?: Curriculum
+
+  /**
+   * The rules settings for the character.
+   */
+  rules: Rules
+
+  /**
+   * Personal data such as hair color and place of birth.
+   */
+  personalData: PersonalData
+}
+
+export interface FullCharacter {
+  phase: "Improvement" | "Finished"
+
+  /**
+   * A valid semantic version (https://semver.org), representing the character schema version of this file.
+   */
+  version: string
+
+  /**
+   * The character’s name.
+   */
+  name: string
+
+  /**
+   * Date of character creation, in RFC 9557 (extension of ISO 8601 / RFC 3339) format.
+   */
+  dateCreated: string
+
+  /**
+   * Date of character last modified, in RFC 9557 (extension of ISO 8601 / RFC 3339) format.
+   */
+  dateLastModified: string
+
+  /**
+   * An object storing all kinds of basic and calculated adventure points.
+   */
+  adventurePoints: AdventurePoints
+
+  /**
+   * An object storing the identifiers of the experience level the character started at and the current experience level, derived from total adventure points.
+   */
+  experienceLevel: ExperienceLevel
+
+  /**
+   * An object storing the identifiers of the race and its optional race variant.
+   */
+  race: Race
+
+  /**
+   * An object storing the identifier of the culture and if the cultural package has been applied.
+   */
+  culture: Culture
+
+  /**
+   * An object storing the identifiers of the profession, its instance and its optional profession variant.
+   */
+  profession: Profession
 
   /**
    * An object storing the identifiers of the curriculum and it’s optional lesson package.
@@ -111,7 +169,7 @@ export interface Character {
   /**
    * Computed, set and bought values for/of derived characteristics.
    */
-  derivedCharacteristics?: Record<UUIDv4, DerivedCharacteristic>
+  derivedCharacteristics: Record<UUIDv4, DerivedCharacteristic>
 
   /**
    * A list of skills with values above 0. Skills that are not listed here default to 0.
@@ -188,6 +246,11 @@ export interface Character {
    */
   purse: Purse
 }
+
+/**
+ * An exported character object from Optolith.
+ */
+export type Character = CharacterInRaceCultureProfessionSelection | FullCharacter
 
 /**
  * The entity’s identifier. A UUID or a locale code if it is registered as the locale entity.
