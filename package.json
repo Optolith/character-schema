@@ -13,7 +13,13 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "generate": "tsondb generate"
+    "generate": "tsondb generate",
+    "release:major": "npm version major -m \"build(release): v%s\"",
+    "release:major:sign": "npm version major --sign-git-tag -m \"build(release): v%s\"",
+    "release:minor": "npm version minor -m \"build(release): v%s\"",
+    "release:minor:sign": "npm version minor --sign-git-tag -m \"build(release): v%s\"",
+    "release:patch": "npm version patch -m \"build(release): v%s\"",
+    "release:patch:sign": "npm version patch --sign-git-tag -m \"build(release): v%s\""
   },
   "exports": {
     ".": "./lib/index.js",
