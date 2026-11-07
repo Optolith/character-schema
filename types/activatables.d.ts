@@ -1,5 +1,8 @@
 import type { NonEmptyArray } from "@elyukai/utils/array/nonEmpty"
-import type { ResolvedSelectOptionIdentifier } from "@optolith/database-schema/cache"
+import type {
+  ResolvedSelectOptionIdentifier,
+  ResolvedSkillApplicationIdentifier,
+} from "@optolith/database-schema/cache"
 
 /**
  * An activatable item reference. Activatables are advantages, disadvantages and special abilities.
@@ -53,7 +56,7 @@ export type PredefinedActivatableOption = {
   /**
    * An identifier referencing a different entry.
    */
-  id: ResolvedSelectOptionIdentifier
+  id: ResolvedSelectOptionIdentifier | ResolvedSkillApplicationIdentifier
 }
 
 /**
