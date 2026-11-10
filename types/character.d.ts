@@ -1,4 +1,7 @@
-import type { SpecialAbilityIdentifier } from "@optolith/database-schema/gen"
+import type {
+  MagicalActionIdentifier,
+  SpecialAbilityIdentifier,
+} from "@optolith/database-schema/gen"
 import type { Activatable } from "./activatables.ts"
 import type { AdventurePoints } from "./adventurePoints.ts"
 import type { Purse } from "./belongings.ts"
@@ -207,23 +210,14 @@ export interface FullCharacter {
   rituals?: Record<UUIDv4, ActivatableRatedWithEnhancements>
 
   /**
-   * Lists of magical actions, by group.
+   * Lists of magical actions, by entity name.
    *
    * This object may grow if new magical actions are introduced, which is not considered a breaking change.
    */
   magicalActions?: {
-    bannzeichen?: ActivatableRated[]
-    curses?: ActivatableRated[]
-    elvenMagicalSongs?: ActivatableRated[]
-    dominationRituals?: ActivatableRated[]
-    magicalMelodies?: ActivatableRated[]
-    magicalDances?: ActivatableRated[]
-    jesterTricks?: ActivatableRated[]
-    animistPowers?: ActivatableRated[]
-    geodeRituals?: ActivatableRated[]
-    goblinRituals?: ActivatableRated[]
-    zibiljaRituals?: ActivatableRated[]
-    magicalRunes?: ActivatableRated[]
+    [
+      K in Exclude<MagicalActionIdentifier["kind"], "AnimistPower" | "Bannzeichen" | "MagicalRune">
+    ]?: Record<UUIDv4, ActivatableRated>
   }
 
   /**
